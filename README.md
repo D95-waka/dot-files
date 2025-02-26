@@ -4,18 +4,29 @@ dot files for Catppuccin based Arch Linux
 ## Screenshots
 ![Desktop](media/desktop.png)
 
-## Applications
+## Environment
+### System
 | Name | App |
 | --- | --- |
 | Distro | Arch |
-| Terminal | Wezterm |
+| Shell | Fish |
 | Font | Iosevka Nerd |
 | Editor | Neovim |
 | Theme | Catppuccin |
 
-## Keybindings
+### Applications
+- Firefox
+- IMV
+- MPV
+- Ranger
+- Fish
+- Fuzzel
 
-#### Window Management
+## Installation
+TODO
+
+## Keybindings
+### Window Management
 | Keys | Action |
 | :--  | :-- |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>Q</kbd> | quit active/focused window
