@@ -2,7 +2,7 @@
 dot files for Catppuccin based Arch Linux
 
 ## Screenshots
-![Desktop](/.media/desktop.png)
+![Desktop](media/desktop.png)
 
 ## Applications
 | Name | App |

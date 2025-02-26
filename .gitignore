@@ -12,6 +12,7 @@
 !/mpd/mpd.conf
 !zathura/**
 !wallpapers/**
+!media/**
 !mpv/*
 !mako/*
 !fontconfig/**
