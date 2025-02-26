@@ -2,6 +2,7 @@
 !*/
 
 !^.gitignore
+!README.md
 !vim/vimrc
 !vim/snippets/**
 !/nvim/**
