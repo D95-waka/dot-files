@@ -9,7 +9,7 @@ function set_dark {
 	gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 	gsettings set org.gnome.desktop.interface gtk-theme Catppuccin-Macchiato-Standard-Blue-Dark
 	sed -i 's|color_scheme_path=.*|color_scheme_path=/home/waka/.config/qt6ct/colors/Catppuccin-Macchiato.conf|' ~/.config/qt6ct/qt6ct.conf
-	makoctl set-mode dark
+	makoctl mode -s dark
 
 	swaymsg -q set \$rosewater \#f4dbd6
 	swaymsg -q set \$flamingo \#f0c6c6
@@ -47,7 +47,7 @@ function set_light {
 	gsettings set org.gnome.desktop.interface color-scheme prefer-light
 	gsettings set org.gnome.desktop.interface gtk-theme Catppuccin-Latte-Standard-Blue-Light
 	sed -i 's|color_scheme_path=.*|color_scheme_path=/home/waka/.config/qt6ct/colors/Catppuccin-Latte.conf|' ~/.config/qt6ct/qt6ct.conf
-	makoctl set-mode light
+	makoctl mode -s light
 
 	swaymsg -q set \$rosewater \#dc8a78
 	swaymsg -q set \$flamingo \#dd7878

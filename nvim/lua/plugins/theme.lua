@@ -24,7 +24,7 @@ return {
 			end,
 			set_light_mode = function()
 				vim.opt.background = 'light'
-				vim.cmd("colorscheme gruvbox-latte")
+				vim.cmd("colorscheme catppuccin-latte")
 			end,
 		},
 	}

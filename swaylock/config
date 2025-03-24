@@ -2,7 +2,6 @@ ignore-empty-password
 show-keyboard-layout
 font=monospace
 font-size=16
-scaling=solid_color
 
 color=24273a
 bs-hl-color=f4dbd6
