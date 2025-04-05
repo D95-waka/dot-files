@@ -5,6 +5,9 @@ return {
 		"L3MON4D3/LuaSnip",
 		config = function()
 			local ls = require('luasnip')
+			ls.config.setup({
+				enable_autosnippets = true
+			})
 			vim.keymap.set({ "i" }, "<C-K>", function() ls.expand() end, { silent = true })
 			vim.keymap.set({ "i", "s" }, "<C-L>", function() ls.jump(1) end, { silent = true })
 			vim.keymap.set({ "i", "s" }, "<C-J>", function() ls.jump(-1) end, { silent = true })
@@ -13,11 +16,20 @@ return {
 					ls.change_choice(1)
 				end
 			end, { silent = true })
-			require("luasnip.loaders.from_vscode").lazy_load()
+
 			require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/.config/nvim/snippets" } })
 		end
 	},
-	"rafamadriz/friendly-snippets",
+	{
+		"iurimateus/luasnip-latex-snippets.nvim",
+		dependencies = {
+			"L3MON4D3/LuaSnip",
+		},
+		config = function()
+			require('luasnip-latex-snippets').setup({ use_treesitter = true })
+			require("snippets")
+		end
+	},
 	{
 		"hrsh7th/nvim-cmp",
 		config = function()
