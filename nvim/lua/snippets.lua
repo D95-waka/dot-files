@@ -1,13 +1,24 @@
 local ls = require("luasnip")
-local utils = require("luasnip-latex-snippets.util.ts_utils")
-local in_math = utils.in_mathzone()
-local in_text = utils.in_text
+local utils = require("luasnip-latex-snippets.util.utils")
+local ts_utils = require("luasnip-latex-snippets.util.ts_utils")
+local in_math = ts_utils.in_mathzone
+local in_text = ts_utils.in_text
+local pipe, no_backslash = utils.pipe, utils.no_backslash
+local in_math_no_backslash = pipe({ in_math, no_backslash })
 
 
 ls.add_snippets("tex", {
 	ls.parser.parse_snippet(
 		{ trig = "mk", name = "Math inline mode", condition = in_text, priority = 10 },
 		"$${1:${TM_SELECTED_TEXT}}$$0"
+	),
+	ls.parser.parse_snippet(
+		{ trig = "$", name = "Math inline mode", condition = in_text, priority = 10 },
+		"$${1:${TM_SELECTED_TEXT}}$$0"
+	),
+	ls.parser.parse_snippet(
+		{ trig = "bold", name = "bold text", condition = in_text, priority = 10 },
+		"\\textbf{${1:${TM_SELECTED_TEXT}}$0"
 	),
 	ls.parser.parse_snippet(
 		{ trig = "pow", name = "expression powered by", condition = in_math, priority = 10 },
@@ -18,7 +29,7 @@ ls.add_snippets("tex", {
 		"\\sum_{${1:${TM_SELECTED_TEXT}}}^${2:\\infty} $0"
 	),
 	ls.parser.parse_snippet(
-		{ trig = "int", name = "integral", condition = in_math, priority = 9 },
+		{ trig = "int", name = "integral", condition = in_math_no_backslash, priority = 9 },
 		"\\int_{${1:-\\infty}}^{${2:\\infty}} ${0:${TM_SELECTED_TEXT}}"
 	),
 	ls.parser.parse_snippet(
@@ -30,8 +41,20 @@ ls.add_snippets("tex", {
 		"\\subseteq $0"
 	),
 	ls.parser.parse_snippet(
+		{ trig = "... ", name = "...", condition = in_math, priority = 9 },
+		"\\ldots$0"
+	),
+	ls.parser.parse_snippet(
+		{ trig = "000", name = "empty set", condition = in_math, priority = 9 },
+		"\\emptyset$0"
+	),
+	ls.parser.parse_snippet(
 		{ trig = "opn", name = "operator name command", condition = in_math, priority = 10 },
 		"\\operatorname{${1:${TM_SELECTED_TEXT}}}$0"
+	),
+	ls.parser.parse_snippet(
+		{ trig = "sq", name = "square root", condition = in_math, priority = 9 },
+		"\\sqrt{${1:${TM_SELECTED_TEXT}}}$0"
 	),
 
 	-- Greek letters
