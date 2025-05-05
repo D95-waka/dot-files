@@ -17,6 +17,10 @@ ls.add_snippets("tex", {
 		"$${1:${TM_SELECTED_TEXT}}$$0"
 	),
 	ls.parser.parse_snippet(
+		{ trig = "dm", name = "Block Math", condition = in_text, priority = 9 },
+		"\\[\n\t${1:${TM_SELECTED_TEXT}}\n.\\]$0"
+	),
+	ls.parser.parse_snippet(
 		{ trig = "bold", name = "bold text", condition = in_text, priority = 10 },
 		"\\textbf{${1:${TM_SELECTED_TEXT}}$0"
 	),
@@ -31,6 +35,10 @@ ls.add_snippets("tex", {
 	ls.parser.parse_snippet(
 		{ trig = "int", name = "integral", condition = in_math_no_backslash, priority = 9 },
 		"\\int_{${1:-\\infty}}^{${2:\\infty}} ${0:${TM_SELECTED_TEXT}}"
+	),
+	ls.parser.parse_snippet(
+		{ trig = "set", name = "bounded set notation", condition = in_math_no_backslash, priority = 9 },
+		"{\\{ ${1:${TM_SELECTED_TEXT}} \\\\}}$0"
 	),
 	ls.parser.parse_snippet(
 		{ trig = "ovs", name = "element overset", condition = in_math, priority = 10 },
@@ -53,7 +61,7 @@ ls.add_snippets("tex", {
 		"\\operatorname{${1:${TM_SELECTED_TEXT}}}$0"
 	),
 	ls.parser.parse_snippet(
-		{ trig = "sq", name = "square root", condition = in_math, priority = 9 },
+		{ trig = "sq", name = "square root", condition = in_math_no_backslash, priority = 9 },
 		"\\sqrt{${1:${TM_SELECTED_TEXT}}}$0"
 	),
 

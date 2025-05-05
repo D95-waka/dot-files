@@ -105,9 +105,13 @@ $mod+Shift+Tab workspace prev_on_output
 # reload the configuration file
 $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+#
 $mod+Shift+r restart
 
 $mod+t mode "resize"
+
+$mod+m exec \
+	"swaymsg -t get_outputs | jq -r '.[] | select(.focused == false) | .name' | xargs wl-mirror"
 
 $mod+n exec \
 	makoctl dismiss
