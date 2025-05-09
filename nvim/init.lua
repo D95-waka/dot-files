@@ -15,3 +15,4 @@ vim.opt.rtp:prepend(lazypath)
 -- Imports
 require("vim-options")
 require("lazy").setup('plugins')
+require("lsp")
