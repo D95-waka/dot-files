@@ -1,4 +1,4 @@
--- Behavior settongs
+-- Behavior settings
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.modeline = true
@@ -7,6 +7,7 @@ vim.opt.formatoptions:append('r')
 vim.opt.wildmenu = true
 vim.opt.smartcase = true
 vim.opt.incsearch = true
+vim.opt.hlsearch = false
 vim.opt.mouse = 'nvicr'
 vim.opt.scrolloff = 0
 vim.opt.undofile = true
