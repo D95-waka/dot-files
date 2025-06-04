@@ -10,6 +10,14 @@ local function scheme_for_appearance(appearance)
 	end
 end
 
+local function cursor_for_appearance(appearance)
+	if appearance:find "Dark" then
+		return "Catppuccin-Macchiato-Dark-Cursors"
+	else
+		return "Catppuccin-Frappe-Light-Cursors"
+	end
+end
+
 -- copied from: https://wezfurlong.org/wezterm/config/lua/window-events/window-resized.html?h=fullscreen
 local function recompute_padding(window, _)
 	local window_dims = window:get_dimensions()

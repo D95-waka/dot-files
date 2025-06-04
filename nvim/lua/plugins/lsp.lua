@@ -5,6 +5,16 @@ return {
 			"nvim-treesitter/nvim-treesitter-textobjects"
 		},
 		config = function()
+			-- vim.api.nvim_create_autocmd("FileType", {
+			-- 	callback = function(opts)
+			-- 		local bufnr = vim.api.nvim_get_current_buf()
+			-- 		local file_format = vim.api.nvim_buf_get_option(bufnr, "ft")
+			-- 		local installed_parsers = require('nvim-treesitter').get_installed('parsers')
+			-- 		if vim.list_contains(installed_parsers, file_format) then
+			-- 			vim.treesitter.start()
+			-- 		end
+			-- 	end
+			-- })
 			require('nvim-treesitter.configs').setup {
 				auto_install = true,
 				highlight = {

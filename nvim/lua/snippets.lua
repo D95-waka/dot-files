@@ -65,7 +65,7 @@ ls.add_snippets("tex", {
 		"\\sqrt{${1:${TM_SELECTED_TEXT}}}$0"
 	),
 	ls.parser.parse_snippet(
-		{ trig = "tilde", name = "tilde over text", condition = in_math_no_backslash, priority = 10 },
+		{ trig = "tild", name = "tilde over text", condition = in_math_no_backslash, priority = 10 },
 		"\\tilde{${1:${TM_SELECTED_TEXT}}}$0"
 	),
 
