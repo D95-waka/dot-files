@@ -218,14 +218,11 @@ Print+Shift exec  \
 Print+Ctrl exec  \
 	'$HOME/.config/scripts/binding_cli.sh screen_capture region'
 
-}
 
-bindcode {
-
-248 exec  \
+XF86Cut exec  \
 	'$HOME/.config/scripts/binding_cli.sh screen_capture selection'
 
-$mod+248 exec  \
+$mod+XF86Cut exec  \
 	'$HOME/.config/scripts/binding_cli.sh screen_capture region'
 
 }

@@ -29,7 +29,7 @@ ls.add_snippets("tex", {
 		"{(${1:${TM_SELECTED_TEXT}})}^${2:2}$0"
 	),
 	ls.parser.parse_snippet(
-		{ trig = "sum", name = "summation", condition = in_math, priority = 10 },
+		{ trig = "sum", name = "summation", condition = in_math_no_backslash, priority = 10 },
 		"\\sum_{${1:${TM_SELECTED_TEXT}}}^${2:\\infty} $0"
 	),
 	ls.parser.parse_snippet(
@@ -49,8 +49,16 @@ ls.add_snippets("tex", {
 		"\\subseteq $0"
 	),
 	ls.parser.parse_snippet(
-		{ trig = "... ", name = "...", condition = in_math, priority = 9 },
+		{ trig = "in ", name = "∈", condition = in_math_no_backslash, priority = 10 },
+		"\\in $0"
+	),
+	ls.parser.parse_snippet(
+		{ trig = "...", name = "...", condition = in_math, priority = 6 },
 		"\\ldots$0"
+	),
+	ls.parser.parse_snippet(
+		{ trig = "+++", name = "+ ... +", condition = in_math_no_backslash, priority = 10 },
+		"+ \\cdots + $0"
 	),
 	ls.parser.parse_snippet(
 		{ trig = "000", name = "empty set", condition = in_math, priority = 9 },

@@ -44,7 +44,7 @@ return {
 					{
 						name = 'buffer',
 						option = {
-							keyword_pattern = [[\(\k\|[־]\)\{5,\}]]
+							keyword_pattern = [[\(\k\|[־-]\)\{5,\}]]
 						}
 					}
 				}),
