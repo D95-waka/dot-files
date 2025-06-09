@@ -49,10 +49,6 @@ ls.add_snippets("tex", {
 		"\\subseteq $0"
 	),
 	ls.parser.parse_snippet(
-		{ trig = "in ", name = "∈", condition = in_math_no_backslash, priority = 10 },
-		"\\in $0"
-	),
-	ls.parser.parse_snippet(
 		{ trig = "...", name = "...", condition = in_math, priority = 6 },
 		"\\ldots$0"
 	),
