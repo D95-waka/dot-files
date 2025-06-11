@@ -20,21 +20,9 @@ function battery {
 	esac
 }
 
-function mpc_status {
-	IFS="
-"
-	s_arr=($(mpc -f "%title% \n%artist% \n%file%"))
-	s_state=$(sed 's/\[\([a-zA-Z]*\)\].*/\1/g' <<< "${s_arr[3]}")
-	local image_path="$("$HOME/Scripts/cover_image.sh" -size 128)"
-	notify-send -i "$image_path" -t 8000 "$s_state" "${s_arr[0]}\n ${s_arr[1]}"
-}
-
 case "$1" in
 "battery")
 	battery "$2" "$3"
-	;;
-"mpc")
-	mpc_status
 	;;
 "device")
 	notify-send -h string:x-dunst-stack-tag:device -t 8000 '	Insert'

@@ -29,12 +29,6 @@ $mod+Shift+q kill
 $mod+r exec \
 	fuzzel
 
-$mod+e exec \
-	'exec $HOME/.config/scripts/binding_cli.sh bemenu_locate'
-
-Ctrl+grave exec \
-	'copyq show'
-
 # change focus
 $mod+$left focus left
 $mod+$down focus down
@@ -47,7 +41,7 @@ $mod+Shift+$down move down
 $mod+Shift+$up move up
 $mod+Shift+$right move right
 
-# enter fullscreen mode for the focused container
+# toggle fullscreen mode for the focused container
 $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
@@ -99,134 +93,121 @@ $mod+Shift+8 move container to workspace $ws8
 $mod+Shift+9 move container to workspace $ws9
 $mod+Shift+0 move container to workspace $ws10
 
+# Cycle between workspaces
 $mod+Tab workspace next_on_output
 $mod+Shift+Tab workspace prev_on_output
 
 # reload the configuration file
 $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-#
+
+# restart sway
 $mod+Shift+r restart
 
+# enter resize mode
 $mod+t mode "resize"
 
+# mirror second monitor
 $mod+m exec \
 	"swaymsg -t get_outputs | jq -r '.[] | select(.focused == false) | .name' | xargs wl-mirror"
 
+# dismiss current notification
 $mod+n exec \
 	makoctl dismiss
 
+# dismiss all open notifications
 $mod+Shift+n exec \
 	makoctl dismiss --all
+#
+# enable display lock-screen
+$mod+c exec \
+	'$HOME/.config/sway/scripts/lock.sh capture blur lock clean suspend'
 
-# Volume keys
-
+# lower current audio device volume level
 XF86AudioLowerVolume exec \
 	notify-send -h string:x-dunst-stack-tag:binds -t 500 \
 	"	$(wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; wpctl get-volume @DEFAULT_AUDIO_SINK@ | \
 		awk '{ if ($3 == "[MUTED]") print \"mute\"; else print $2 * 100 \"%\"; }')"
 
+# raise current audio device volume level
 XF86AudioRaiseVolume exec \
 	notify-send -h string:x-dunst-stack-tag:binds -t 500 \
 	"	$(wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+; wpctl get-volume @DEFAULT_AUDIO_SINK@ | \
 		awk '{ if ($3 == "[MUTED]") print \"mute\"; else print $2 * 100 \"%\"; }')"
 
+# toggle current audio device
 XF86AudioMute exec \
 	notify-send -h string:x-dunst-stack-tag:binds -t 500 \
 	"	$(wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; wpctl get-volume @DEFAULT_AUDIO_SINK@ | \
 		awk '{ if ($3 == "[MUTED]") print \"mute\"; else print $2 * 100 \"%\"; }')"
 
+# lower current audio capturing device volume level
 Shift+XF86AudioLowerVolume exec \
 	notify-send -h string:x-dunst-stack-tag:binds -t 500 \
 	"󰢳	$(wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-; wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | \
 		awk '{ if ($3 == "[MUTED]") print \"mute\"; else print $2 * 100 \"%\"; }')"
 
+# raise current audio capturing device volume level
 Shift+XF86AudioRaiseVolume exec \
 	notify-send -h string:x-dunst-stack-tag:binds -t 500 \
 	"󰢴	$(wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+; wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | \
 		awk '{ if ($3 == "[MUTED]") print \"mute\"; else print $2 * 100 \"%\"; }')"
 
+# toggle current audio capturing device
 XF86AudioMicMute exec \
 	notify-send -h string:x-dunst-stack-tag:binds -t 500 \
 	"󰍬	$(wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | \
 		awk '{ if ($3 == "[MUTED]") print \"mute\"; else print $2 * 100 \"%\"; }')"
 
-# player controllers
-XF86AudioPlay exec \
-	'export MPD_HOST="master@$HOME/.mpd/socket"; \
-	mpc toggle; \
-	mpc sendmessage event_bump toggle'
-
-XF86AudioStop exec \
-	'export MPD_HOST="master@$HOME/.mpd/socket"; \
-	mpc stop; \
-	mpc sendmessage event_bump stop'
-
-XF86AudioNext exec \
-	'export MPD_HOST="master@$HOME/.mpd/socket"; \
-	mpc next; \
-	mpc sendmessage event_bump next'
-
-XF86AudioPrev exec \
-	'export MPD_HOST="master@$HOME/.mpd/socket"; \
-	mpc prev; \
-	mpc sendmessage event_bump prev'
-
-XF86TouchpadToggle exec \
-	swaymsg input type:touchpad events toggle | \
-	notify-send -h string:x-dunst-stack-tag:binds -t 3000 "$(swaymsg -t get_inputs | \
-		jq -r '.[0].libinput.send_events | \
-		if . == \"enabled\" then "󰍽" else (if . == "disabled" then "󰍾" else "󰎀" end) end')"
-
-$mod+c exec \
-	'$HOME/.config/sway/scripts/lock.sh capture blur lock clean suspend'
-
-#Change to next language.
+# cycle between languages, note that the language change itself is configured through the output configuration
 $mod+space exec \
 	notify-send -h string:x-dunst-stack-tag:binds -t 500 \
 		"󰗊	$(swaymsg -t get_inputs | jq -r '[.[] | select( .type == "keyboard" )] | .[0].xkb_active_layout_name' | sed 's/ .*$//')"
 
-#Brightness controllers
+# raise screen brightness level
 XF86MonBrightnessUp exec \
 	light -A 5% | \
 	notify-send -h string:x-dunst-stack-tag:binds -t 500 "󰃟	$(light -g | sed 's/\..*//')%"
 
+# lower screen brightness level
 XF86MonBrightnessDown exec \
 	light -U 5% | \
 	notify-send -h string:x-dunst-stack-tag:binds -t 500 "󰃟	$(light -g | sed 's/\..*//')%"
 
-XF86ScreenSaver exec \
-	sh -c 'if [[ "$(light)" == "0.00" ]]; then light -I; else light -O; light -S 0; fi'
-
+# toggle system dark-mode via dedicated script
 Shift+XF86MonBrightnessUp exec \
 	'~/.config/scripts/darkmode.sh toggle'
 
+# didn't think what to set this to yet
 XF86Favorites exec  \
 	notify-send -h string:x-dunst-stack-tag:special -t 500 "FAVORITES"
 
+# didn't think what to set this to yet
 XF86Calculator exec  \
 	notify-send -h string:x-dunst-stack-tag:special -t 500 "CALCULATOR"
 
-
-#Capture options
+# capture whole screen
 Print exec \
-	'$HOME/.config/scripts/binding_cli.sh screen_capture screen'
+	'$HOME/.config/sway/scripts/screen_capture.sh screen'
 
+# capture screen selection
 Print+Shift exec  \
-	'$HOME/.config/scripts/binding_cli.sh screen_capture selection'
+	'$HOME/.config/sway/scripts/screen_capture.sh selection'
 
+# capture screen window
 Print+Ctrl exec  \
-	'$HOME/.config/scripts/binding_cli.sh screen_capture region'
+	'$HOME/.config/sway/scripts/screen_capture.sh region'
 
-
+# capture screen selection
 XF86Cut exec  \
-	'$HOME/.config/scripts/binding_cli.sh screen_capture selection'
+	'$HOME/.config/sway/scripts/screen_capture.sh selection'
 
+# capture screen window
 $mod+XF86Cut exec  \
-	'$HOME/.config/scripts/binding_cli.sh screen_capture region'
+	'$HOME/.config/sway/scripts/screen_capture.sh region'
 
 }
 
+# touchpad gestures setting
 bindgesture swipe:3:right workspace next
 bindgesture swipe:3:left workspace prev
 
@@ -236,8 +217,5 @@ bindgesture swipe:4:down move down
 bindgesture swipe:4:up move up
 
 bindgesture hold:4 exec $TERMINAL
-
-#bindgesture pinch:2:clockwise+right focus right
-
 
 # vim: set syntax=sh

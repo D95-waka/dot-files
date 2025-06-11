@@ -10,6 +10,7 @@ return {
 		opts = {
 			ensure_installed = {
 				"bash",
+				"c",
 				"diff",
 				"fish",
 				"git_config",
@@ -17,6 +18,7 @@ return {
 				"gitignore",
 				"help",
 				"http",
+				"ini",
 				"json",
 				"json5",
 				"latex",
@@ -30,6 +32,8 @@ return {
 				"vim",
 				"vimdoc",
 				"xml",
+				"yaml",
+				"toml",
 			}
 		},
 		config = function(_, opts)
@@ -45,6 +49,9 @@ return {
 						print("Treesitter not enabling")
 						return
 					end
+
+					vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+					--vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 				end
 			})
 		end
