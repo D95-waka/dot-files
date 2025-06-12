@@ -23,16 +23,21 @@ set $disp2 "DP-1"
 xwayland disable
 focus_follows_mouse no
 mouse_warping none
-input * {
+
+input type:keyboard {
 	xkb_options "grp:win_space_toggle,caps:escape_shifted_capslock"
 	xkb_layout "us,il"
 	xkb_variant "altgr-intl,"
 	dwt disabled
+}
+
+input type:touchpad {
 	tap enabled
+	drag_lock disabled
 	pointer_accel 0.25
 }
 
-input "1008:4504:HP_HP_USB_1000dpi_Laser_Mouse" {
+input type:pointer {
 	scroll_factor 2
 }
 
