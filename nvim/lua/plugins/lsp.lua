@@ -9,6 +9,7 @@ return {
 		},
 		opts = {
 			ensure_installed = {
+				"awk",
 				"bash",
 				"c",
 				"diff",
@@ -19,6 +20,7 @@ return {
 				"help",
 				"http",
 				"ini",
+				"java",
 				"json",
 				"json5",
 				"latex",

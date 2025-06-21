@@ -6,7 +6,6 @@ local in_text = ts_utils.in_text
 local pipe, no_backslash = utils.pipe, utils.no_backslash
 local in_math_no_backslash = pipe({ in_math, no_backslash })
 
-
 ls.add_snippets("tex", {
 	ls.parser.parse_snippet(
 		{ trig = "mk", name = "Math inline mode", condition = in_text, priority = 10 },
@@ -17,7 +16,7 @@ ls.add_snippets("tex", {
 		"$${1:${TM_SELECTED_TEXT}}$$0"
 	),
 	ls.parser.parse_snippet(
-		{ trig = "dm", name = "Block Math", condition = in_text, priority = 9 },
+		{ trig = "dm", name = "Block Math", condition = in_text, priority = 11 },
 		"\\[\n\t${1:${TM_SELECTED_TEXT}}\n.\\]$0"
 	),
 	ls.parser.parse_snippet(
@@ -33,11 +32,11 @@ ls.add_snippets("tex", {
 		"\\sum_{${1:${TM_SELECTED_TEXT}}}^${2:\\infty} $0"
 	),
 	ls.parser.parse_snippet(
-		{ trig = "int", name = "integral", condition = in_math_no_backslash, priority = 9 },
+		{ trig = "int", name = "integral", condition = in_math_no_backslash, priority = 11 },
 		"\\int_{${1:-\\infty}}^{${2:\\infty}} ${0:${TM_SELECTED_TEXT}}"
 	),
 	ls.parser.parse_snippet(
-		{ trig = "set", name = "bounded set notation", condition = in_math_no_backslash, priority = 9 },
+		{ trig = "set", name = "bounded set notation", condition = in_math_no_backslash, priority = 10 },
 		"{\\{ ${1:${TM_SELECTED_TEXT}} \\\\}}$0"
 	),
 	ls.parser.parse_snippet(
@@ -49,15 +48,23 @@ ls.add_snippets("tex", {
 		"\\subseteq $0"
 	),
 	ls.parser.parse_snippet(
-		{ trig = "...", name = "...", condition = in_math, priority = 6 },
+		{ trig = "...", name = "...", condition = in_math, priority = 101 },
 		"\\ldots$0"
+	),
+	ls.parser.parse_snippet(
+		{ trig = ",,,", name = ", ...,", condition = in_math_no_backslash, wordTrig = false, priority = 10 },
+		", \\ldots, $0"
 	),
 	ls.parser.parse_snippet(
 		{ trig = "+++", name = "+ ... +", condition = in_math_no_backslash, priority = 10 },
 		"+ \\cdots + $0"
 	),
 	ls.parser.parse_snippet(
-		{ trig = "000", name = "empty set", condition = in_math, priority = 9 },
+		{ trig = "^^", name = "superscript", condition = in_math_no_backslash, wordTrig = false, priority = 10 },
+		"^{${1:-1}}$0"
+	),
+	ls.parser.parse_snippet(
+		{ trig = "000", name = "empty set", condition = in_math, priority = 11 },
 		"\\emptyset$0"
 	),
 	ls.parser.parse_snippet(
@@ -65,7 +72,7 @@ ls.add_snippets("tex", {
 		"\\operatorname{${1:${TM_SELECTED_TEXT}}}$0"
 	),
 	ls.parser.parse_snippet(
-		{ trig = "sq", name = "square root", condition = in_math_no_backslash, priority = 9 },
+		{ trig = "sq", name = "square root", condition = in_math_no_backslash, priority = 11 },
 		"\\sqrt{${1:${TM_SELECTED_TEXT}}}$0"
 	),
 	ls.parser.parse_snippet(

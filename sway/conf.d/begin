@@ -41,6 +41,10 @@ input type:pointer {
 	scroll_factor 2
 }
 
+input type:tablet_pad {
+	events enabled
+}
+
 output "$disp2" {
 	pos 0 1600
 	scale_filter linear
