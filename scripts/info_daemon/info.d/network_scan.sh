@@ -8,28 +8,24 @@ function profile_changed {
 		return 0
 	fi
 
-	sleep 3
-	local profile_enabled=1
-	nmcli connection show "$profile_name" |
-		grep -q 'GENERAL.STATE.*activated$' &&
-		profile_enabled=0
-	if [[ $profile_enabled != 0 ]]; then
-		return 0
-	fi
+	local profile_enabled="$(nmcli -g GENERAL.STATE connection show "$profile_name")"
+	local profile_type="$(nmcli -g connection.type connection show "$profile_name")"
+	log "Connection: $profile_type, $profile_name, $profile_enabled"
+	local logo=' '
+	case "$profile_type" in
+		'wireless')
+			logo=' '
+			;;
+		'vpn' | 'wireguard')
+			logo='󰒘 '
+			;;
+	esac
 
-	local profile_type="$(
-		nmcli connection show "$profile_name" |
-		awk '$1 == "connection.type:" {
-							sub(/.*-/, "", $2)
-							print $2
-						}')"
-	log "Connected to $profile_type: $profile_name"
-	~/.config/scripts/notification_templates.sh network "$profile_type" "$profile_name"
+	notify-send -t 5000 "$logo	$profile_name" "$profile_enabled"
 }
 
 function main {
 	nmcli connection monitor | while read line; do
-		log "$line"
 		if [[ $line =~ connection\ profile\ changed ]]; then
 			local profile_name="${line//:*/}"
 			profile_changed "$profile_name"

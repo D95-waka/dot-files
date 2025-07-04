@@ -22,7 +22,7 @@ alias syu="sudo pacman -Syu"
 # startup
 if test "$WAYLAND_DISPLAY" = "" -a "$XDG_VTNR" -eq 1
 	cd
-	exec sway
+	#exec sway
 end
 
 # Functions

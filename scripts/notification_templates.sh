@@ -27,18 +27,6 @@ case "$1" in
 "device")
 	notify-send -h string:x-dunst-stack-tag:device -t 8000 '	Insert'
 	;;
-"network")
-	logo=''
-	case "$2" in
-		'wireless')
-			logo=''
-			;;
-		'vpn')
-			logo=''
-			;;
-	esac
-	notify-send -t 5000 "$logo	$3"
-	;;
 "brightness")
 	notify-send -h string:x-dunst-stack-tag:bind -t 500 "󰃟	$(light -G | sed 's/\..*//')%"
 	;;
