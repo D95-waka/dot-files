@@ -26,8 +26,7 @@ mouse_warping none
 
 input type:keyboard {
 	xkb_options "grp:win_space_toggle,caps:escape_shifted_capslock"
-	xkb_layout "us,il"
-	xkb_variant "altgr-intl,"
+	xkb_layout "us(altgr-intl),il"
 	dwt disabled
 }
 
