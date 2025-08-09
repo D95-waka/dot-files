@@ -7,7 +7,10 @@ return {
 		config = function()
 			require("catppuccin").setup({
 				transparent_background = true,
-				flavour = "macchiato"
+				flavour = "macchiato",
+				float = {
+					transparent = true,
+				},
 			})
 
 			vim.o.background = 'dark'
