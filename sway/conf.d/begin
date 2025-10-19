@@ -55,6 +55,7 @@ bindswitch --reload --locked lid:off output $disp1 enable
 
 # startup apps
 exec_always 'killall mako; mako &'
+exec_always 'killall copyq; copyq &'
 exec_always '~/.config/scripts/info_daemon/info_daemon.sh'
 
 exec ' \

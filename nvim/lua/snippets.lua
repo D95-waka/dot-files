@@ -48,6 +48,18 @@ ls.add_snippets("tex", {
 		"\\subseteq $0"
 	),
 	ls.parser.parse_snippet(
+		{ trig = "nin", name = "∉", condition = in_math, priority = 10 },
+		"\\notin $0"
+	),
+	ls.parser.parse_snippet(
+		{ trig = "|=", name = "⊨", condition = in_math, priority = 10 },
+		"\\models$0"
+	),
+	ls.parser.parse_snippet(
+		{ trig = "|-", name = "⊢", condition = in_math, priority = 10 },
+		"\\vdash$0"
+	),
+	ls.parser.parse_snippet(
 		{ trig = "...", name = "...", condition = in_math, priority = 101 },
 		"\\ldots$0"
 	),

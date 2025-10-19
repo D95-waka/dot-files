@@ -106,6 +106,9 @@ $mod+Shift+r restart
 # enter resize mode
 $mod+t mode "resize"
 
+# open copy menu
+Ctrl+grave exec "copyq show"
+
 # mirror second monitor
 $mod+m exec \
 	"swaymsg -t get_outputs | jq -r '.[] | select(.focused == false) | .name' | xargs wl-mirror"
