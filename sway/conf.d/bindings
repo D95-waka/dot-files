@@ -188,6 +188,16 @@ XF86Favorites exec  \
 XF86Calculator exec  \
 	notify-send -h string:x-dunst-stack-tag:special -t 500 "CALCULATOR"
 
+# remote control options
+XF86HomePage exec \
+	sh -c 'imv -f $HOME/.local/share/prompts/prompt3.png & sleep 10; kill %1'
+
+XF86Yellow exec \
+	sh -c 'imv -f $HOME/.local/share/prompts/prompt1.png & sleep 10; kill %1'
+
+XF86Video exec \
+	sh -c 'imv -f $HOME/.local/share/prompts/prompt2.png & sleep 10; kill %1'
+
 # capture whole screen
 Print exec \
 	'$HOME/.config/sway/scripts/screen_capture.sh screen'

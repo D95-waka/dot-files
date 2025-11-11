@@ -53,6 +53,7 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
 
 vim.g.vimtex_syntax_enabled = 0
 vim.g.vimtex_syntax_conceal_disable = 1
+vim.g.vimtex_doc_enabled = 0
 
 -- Mappings
 local opts = { noremap = true, silent = true }

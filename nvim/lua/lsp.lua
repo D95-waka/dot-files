@@ -72,6 +72,9 @@ vim.lsp.config('texlab', {
 			chktex = {
 				onOpenAndSave = true,
 				onEdit = true,
+			},
+			hover = {
+				symbols = 'glyph'
 			}
 		}
 	}
