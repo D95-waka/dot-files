@@ -91,6 +91,10 @@ ls.add_snippets("tex", {
 		{ trig = "tild", name = "tilde over text", condition = in_math_no_backslash, priority = 10 },
 		"\\tilde{${1:${TM_SELECTED_TEXT}}}$0"
 	),
+	ls.parser.parse_snippet(
+		{ trig = "vec", name = "vector notation over text", condition = in_math_no_backslash, priority = 9 },
+		"\\vec{${1:${TM_SELECTED_TEXT}}}$0"
+	),
 
 	-- Greek letters
 	ls.parser.parse_snippet(

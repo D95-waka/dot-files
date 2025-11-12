@@ -32,26 +32,40 @@ vim.lsp.config('lua_ls', {
 	}
 })
 
-vim.lsp.enable('pylsp')
-vim.lsp.config('pylsp', {
+vim.lsp.enable('pyright')
+vim.lsp.config('pyright', {
 	capabilities = require("cmp_nvim_lsp").default_capabilities(),
 	settings = {
-		pylsp = {
-			plugins = {
-				pycodestyle = {
-					ignore = { 'W391' },
-					maxLineLength = 100
-				},
-				rope_autoimport = {
-					enabled = true
-				},
-				rope_completion = {
-					enabled = true
-				}
+		python = {
+			analysis = {
+				autoSearchPaths = true,
+				diagnosticMode = "openFilesOnly",
+				useLibraryCodeForTypes = true
 			}
 		}
 	}
 })
+
+-- vim.lsp.enable('pylsp')
+-- vim.lsp.config('pylsp', {
+-- 	capabilities = require("cmp_nvim_lsp").default_capabilities(),
+-- 	settings = {
+-- 		pylsp = {
+-- 			plugins = {
+-- 				pycodestyle = {
+-- 					ignore = { 'W391' },
+-- 					maxLineLength = 100
+-- 				},
+-- 				rope_autoimport = {
+-- 					enabled = true
+-- 				},
+-- 				rope_completion = {
+-- 					enabled = true
+-- 				}
+-- 			}
+-- 		}
+-- 	}
+-- })
 
 vim.lsp.enable('texlab')
 vim.lsp.config('texlab', {
