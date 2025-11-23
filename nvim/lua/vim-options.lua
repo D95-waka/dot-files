@@ -45,19 +45,8 @@ vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
 	group = specialsgroup,
 	command = 'silent !swaymsg reload',
 })
-vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
-	pattern = '*.rasi',
-	group = specialsgroup,
-	command = 'set syntax=css',
-})
 
+-- Disable some stuff of VimTex
 vim.g.vimtex_syntax_enabled = 0
 vim.g.vimtex_syntax_conceal_disable = 1
 vim.g.vimtex_doc_enabled = 0
-
--- Mappings
-local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)

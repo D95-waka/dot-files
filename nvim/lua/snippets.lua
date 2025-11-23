@@ -92,8 +92,16 @@ ls.add_snippets("tex", {
 		"\\tilde{${1:${TM_SELECTED_TEXT}}}$0"
 	),
 	ls.parser.parse_snippet(
-		{ trig = "vec", name = "vector notation over text", condition = in_math_no_backslash, priority = 9 },
-		"\\vec{${1:${TM_SELECTED_TEXT}}}$0"
+		{ trig = "bar", name = "bar notation over text", condition = in_math_no_backslash, priority = 11 },
+		"\\bar{${1:${TM_SELECTED_TEXT}}}$0"
+	),
+	ls.parser.parse_snippet(
+		{ trig = "ovl", name = "overline over text", condition = in_math_no_backslash, priority = 10 },
+		"\\overline{${1:${TM_SELECTED_TEXT}}}$0"
+	),
+	ls.parser.parse_snippet(
+		{ trig = "unl", name = "underline under text", condition = in_math_no_backslash, priority = 10 },
+		"\\underline{${1:${TM_SELECTED_TEXT}}}$0"
 	),
 
 	-- Greek letters

@@ -46,27 +46,6 @@ vim.lsp.config('pyright', {
 	}
 })
 
--- vim.lsp.enable('pylsp')
--- vim.lsp.config('pylsp', {
--- 	capabilities = require("cmp_nvim_lsp").default_capabilities(),
--- 	settings = {
--- 		pylsp = {
--- 			plugins = {
--- 				pycodestyle = {
--- 					ignore = { 'W391' },
--- 					maxLineLength = 100
--- 				},
--- 				rope_autoimport = {
--- 					enabled = true
--- 				},
--- 				rope_completion = {
--- 					enabled = true
--- 				}
--- 			}
--- 		}
--- 	}
--- })
-
 vim.lsp.enable('texlab')
 vim.lsp.config('texlab', {
 	capabilities = require("cmp_nvim_lsp").default_capabilities(),
