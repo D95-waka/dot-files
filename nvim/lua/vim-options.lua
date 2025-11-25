@@ -19,6 +19,14 @@ vim.keymap.set('n', '<Leader>p', '"+p')
 vim.keymap.set('n', '<ScrollWheelUp>', '<C-Y>')
 vim.keymap.set('n', '<ScrollWheelDown>', '<C-E>')
 
+-- Buffer related settings
+vim.opt.wildcharm = ('\t'):byte()
+vim.opt.wildmode = 'full:lastused'
+vim.keymap.set('n', '<leader>b', ':b <tab>', { noremap = true, silent = false })
+vim.keymap.set('n', '<leader>l', ':bnext <CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>h', ':bprevious <CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader><tab>', ':buffer# <CR>', { noremap = true, silent = true })
+
 -- Looks settings
 vim.cmd("syntax on")
 vim.opt.number = true

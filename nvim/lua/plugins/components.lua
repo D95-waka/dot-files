@@ -31,5 +31,17 @@ return {
 			tabline = {},
 			extensions = { 'man' },
 		}
+	},
+	{
+		'akinsho/bufferline.nvim',
+		version = "*",
+		dependencies = 'nvim-tree/nvim-web-devicons',
+		opts = {
+			options = {
+				themable = true,
+				numbers = 'buffer_id',
+				always_show_bufferline = false,
+			}
+		}
 	}
 }
