@@ -40,12 +40,20 @@ ls.add_snippets("tex", {
 		"{\\{ ${1:${TM_SELECTED_TEXT}} \\\\}}$0"
 	),
 	ls.parser.parse_snippet(
+		{ trig = "seq", name = "sequence notation", condition = in_math_no_backslash, priority = 10 },
+		"{(${1:${TM_SELECTED_TEXT}})}_{${2:n = 1}}^{${3:\\infty}}$0"
+	),
+	ls.parser.parse_snippet(
 		{ trig = "ovs", name = "element overset", condition = in_math, priority = 10 },
 		"\\overset{${1:${TM_SELECTED_TEXT}}}{${2:=}} $0"
 	),
 	ls.parser.parse_snippet(
 		{ trig = "se ", name = "⊆", condition = in_math, priority = 10 },
 		"\\subseteq $0"
+	),
+	ls.parser.parse_snippet(
+		{ trig = "in ", name = "∈", condition = in_math, priority = 10 },
+		"\\in $0"
 	),
 	ls.parser.parse_snippet(
 		{ trig = "nin", name = "∉", condition = in_math, priority = 10 },
