@@ -91,6 +91,19 @@ ls.add_snippets("tex", {
 		{ trig = "opn", name = "operator name command", condition = in_math, priority = 10 },
 		"\\operatorname{${1:${TM_SELECTED_TEXT}}}$0"
 	),
+	ls.snippet(
+		{
+			trig = "(%a+)opn",
+			name = "operatoname notation for text",
+			wordTrig = false,
+			condition = in_math_no_backslash,
+			regTrig = true,
+			priority = 101
+		},
+		ls.function_node(function(_, snip)
+			return string.format("\\operatorname{%s}", snip.captures[1])
+		end, {})
+	),
 	ls.parser.parse_snippet(
 		{ trig = "sq", name = "square root", condition = in_math_no_backslash, priority = 11 },
 		"\\sqrt{${1:${TM_SELECTED_TEXT}}}$0"
@@ -103,9 +116,35 @@ ls.add_snippets("tex", {
 		{ trig = "bar", name = "bar notation over text", condition = in_math_no_backslash, priority = 11 },
 		"\\bar{${1:${TM_SELECTED_TEXT}}}$0"
 	),
+	ls.snippet(
+		{
+			trig = "(%a+)bar",
+			name = "bar notation over text",
+			wordTrig = false,
+			condition = in_math_no_backslash,
+			regTrig = true,
+			priority = 101
+		},
+		ls.function_node(function(_, snip)
+			return string.format("\\bar{%s}", snip.captures[1])
+		end, {})
+	),
 	ls.parser.parse_snippet(
 		{ trig = "ovl", name = "overline over text", condition = in_math_no_backslash, priority = 10 },
 		"\\overline{${1:${TM_SELECTED_TEXT}}}$0"
+	),
+	ls.snippet(
+		{
+			trig = "(%a+)ovl",
+			name = "overline notation over text",
+			wordTrig = false,
+			condition = in_math_no_backslash,
+			regTrig = true,
+			priority = 101
+		},
+		ls.function_node(function(_, snip)
+			return string.format("\\overline{%s}", snip.captures[1])
+		end, {})
 	),
 	ls.parser.parse_snippet(
 		{ trig = "unl", name = "underline under text", condition = in_math_no_backslash, priority = 10 },
@@ -243,4 +282,33 @@ ls.add_snippets("tex", {
 	),
 }, {
 	type = "autosnippets",
+})
+
+local function environment_s(env_name)
+	return ls.parser.parse_snippet(
+		{ trig = env_name, name = env_name .. " environment", condition = in_text, priority = 10 },
+		"\\begin{" .. env_name .. "}\n\t${1:${TM_SELECTED_TEXT}}\n\\end{" .. env_name .. "}$0"
+	)
+end
+
+local function named_environment_s(env_name)
+	return ls.parser.parse_snippet(
+		{ trig = env_name, name = env_name .. " environment", condition = in_text, priority = 10 },
+		"\\begin{" .. env_name .. "}[$2]\n\t${1:${TM_SELECTED_TEXT}}\n\\end{" .. env_name .. "}$0"
+	)
+end
+
+ls.add_snippets("tex", {
+	environment_s('example'),
+	environment_s('remark'),
+	environment_s('proposition'),
+	environment_s('corollary'),
+	environment_s('proof'),
+	environment_s('solution'),
+	environment_s('lemma'),
+	environment_s('enumerate'),
+	named_environment_s('theorem'),
+	named_environment_s('definition'),
+}, {
+	type = "snippets",
 })

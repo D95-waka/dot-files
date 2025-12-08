@@ -18,7 +18,7 @@ set $ws9 "9"
 set $ws10 "e1"
 
 set $disp1 "eDP-1"
-set $disp2 "DP-1"
+set $disp2 "HDMI-A-1"
 
 xwayland disable
 focus_follows_mouse no
