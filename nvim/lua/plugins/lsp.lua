@@ -76,7 +76,6 @@ return {
 				},
 			}
 
-			-- TODO: Add support for these: inline_formula displayed_equation generic_environment
 			vim.keymap.set({ "x", "o" }, "an", function()
 				require "nvim-treesitter-textobjects.select".select_textobject("@call.outer", "textobjects")
 			end)
@@ -97,6 +96,12 @@ return {
 			end)
 			vim.keymap.set({ "x", "o" }, "as", function()
 				require "nvim-treesitter-textobjects.select".select_textobject("@local.scope", "locals")
+			end)
+			vim.keymap.set({ "x", "o" }, "al", function()
+				require "nvim-treesitter-textobjects.select".select_textobject("@math_environment.outer", "textobjects")
+			end)
+			vim.keymap.set({ "x", "o" }, "il", function()
+				require "nvim-treesitter-textobjects.select".select_textobject("@math_environment.outer", "textobjects")
 			end)
 			vim.keymap.set("n", "<leader>a", function()
 				require("nvim-treesitter-textobjects.swap").swap_next "@parameter.inner"

@@ -40,6 +40,8 @@ function set_dark {
 
 	swaymsg -q seat seat0 xcursor_theme Catppuccin-Macchiato-Dark-Cursors 14
 	gsettings set org.gnome.desktop.interface cursor-theme Catppuccin-Macchiato-Dark-Cursors
+
+	echo 'general.import = [ "~/.config/alacritty/catppuccin-macchiato.toml" ]' > ~/.cache/alacritty_theme.toml
 }
 
 function set_light {
@@ -78,6 +80,8 @@ function set_light {
 
 	swaymsg -q seat seat0 xcursor_theme Catppuccin-Frappe-Light-Cursors 14
 	gsettings set org.gnome.desktop.interface cursor-theme Catppuccin-Frappe-Light-Cursors
+
+	echo 'general.import = [ "~/.config/alacritty/catppuccin-latte.toml" ]' > ~/.cache/alacritty_theme.toml
 }
 
 function refresh_color {
