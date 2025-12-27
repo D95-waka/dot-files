@@ -4,56 +4,28 @@ return {
 		lazy = false,
 		build = ":TSUpdate",
 		event = "BufReadPost",
-		branch = "main",
-		dependencies = {
-		},
-		opts = {
-			ensure_installed = {
-				"awk",
-				"bash",
-				"c",
-				"diff",
-				"fish",
-				"git_config",
-				"gitcommit",
-				"gitignore",
-				"help",
-				"http",
-				"ini",
-				"java",
-				"json",
-				"json5",
-				"latex",
-				"lua",
-				"markdown",
-				"markdown_inline",
-				"python",
-				"query",
-				"sh",
-				"tex",
-				"vim",
-				"vimdoc",
-				"xml",
-				"yaml",
-				"toml",
-			}
-		},
+		branch = 'main',
 		config = function(_, opts)
-			require("nvim-treesitter").setup {
+			require('nvim-treesitter').setup {
 				install_dir = vim.fn.stdpath('data') .. '/site'
 			}
-			require("nvim-treesitter").install(opts.ensure_installed)
 			vim.api.nvim_create_autocmd("FileType", {
-				pattern = opts.ensure_installed,
-				callback = function ()
-					local ok = pcall(vim.treesitter.start)
+				group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true }),
+				desc = 'Enable treesitter highlighting and indentation',
+				callback = function (event)
+					local lang = vim.treesitter.language.get_lang(event.match) or event.match
+					local buf = event.buf
+					local ok = pcall(vim.treesitter.start, buf, lang)
 					if not ok then
-						print("Treesitter not enabling")
-						return
+						require("nvim-treesitter").install({ lang })
+					end
+					if vim.treesitter.query.get(lang, "indents") then
+						vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 					end
 
-					vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-					--vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+					if vim.treesitter.query.get(lang, "folds") then
+						vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+					end
 				end
 			})
 		end
@@ -101,7 +73,7 @@ return {
 				require "nvim-treesitter-textobjects.select".select_textobject("@math_environment.outer", "textobjects")
 			end)
 			vim.keymap.set({ "x", "o" }, "il", function()
-				require "nvim-treesitter-textobjects.select".select_textobject("@math_environment.outer", "textobjects")
+				require "nvim-treesitter-textobjects.select".select_textobject("@math_environment.inner", "textobjects")
 			end)
 			vim.keymap.set("n", "<leader>a", function()
 				require("nvim-treesitter-textobjects.swap").swap_next "@parameter.inner"
