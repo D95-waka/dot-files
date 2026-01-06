@@ -5,6 +5,11 @@ return {
 		build = ":TSUpdate",
 		event = "BufReadPost",
 		branch = 'main',
+		opts = {
+			ignore = {
+				'csv'
+			}
+		},
 		config = function(_, opts)
 			require('nvim-treesitter').setup {
 				install_dir = vim.fn.stdpath('data') .. '/site'
@@ -14,13 +19,21 @@ return {
 				desc = 'Enable treesitter highlighting and indentation',
 				callback = function (event)
 					local lang = vim.treesitter.language.get_lang(event.match) or event.match
+					if vim.tbl_contains(opts.ignore, lang) then
+						return
+					end
+
+					if require('nvim-treesitter.parsers')[lang] == nil then
+						return
+					end
+
 					local buf = event.buf
 					local ok = pcall(vim.treesitter.start, buf, lang)
 					if not ok then
 						require("nvim-treesitter").install({ lang })
 					end
 					if vim.treesitter.query.get(lang, "indents") then
-						vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+						vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 					end
 
 					if vim.treesitter.query.get(lang, "folds") then
