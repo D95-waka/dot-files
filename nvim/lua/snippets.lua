@@ -112,6 +112,19 @@ ls.add_snippets("tex", {
 		{ trig = "tild", name = "tilde over text", condition = in_math_no_backslash, priority = 10 },
 		"\\tilde{${1:${TM_SELECTED_TEXT}}}$0"
 	),
+	ls.snippet(
+		{
+			trig = "(%a+)tild",
+			name = "tilde notation over text",
+			wordTrig = false,
+			condition = in_math_no_backslash,
+			regTrig = true,
+			priority = 101
+		},
+		ls.function_node(function(_, snip)
+			return string.format("\\tilde{%s}", snip.captures[1])
+		end, {})
+	),
 	ls.parser.parse_snippet(
 		{ trig = "bar", name = "bar notation over text", condition = in_math_no_backslash, priority = 11 },
 		"\\bar{${1:${TM_SELECTED_TEXT}}}$0"

@@ -35,6 +35,7 @@ vim.opt.numberwidth = 1
 vim.opt.conceallevel = 2
 vim.opt.showmode = false
 vim.opt.laststatus = 2
+vim.opt.winborder = 'single'
 
 -- Fold settings
 vim.opt.foldmethod = 'expr'
