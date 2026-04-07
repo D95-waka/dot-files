@@ -120,7 +120,9 @@ $mod+n exec \
 # dismiss all open notifications
 $mod+Shift+n exec \
 	makoctl dismiss --all
-#
+
+$mod+Shift+b bar mode toggle
+
 # enable display lock-screen
 $mod+c exec \
 	'$HOME/.config/sway/scripts/lock.sh capture blur lock clean suspend'
@@ -211,11 +213,11 @@ Print+Ctrl exec  \
 	'$HOME/.config/sway/scripts/screen_capture.sh region'
 
 # capture screen selection
-XF86Cut exec  \
+XF86SelectiveScreenshot exec  \
 	'$HOME/.config/sway/scripts/screen_capture.sh selection'
 
 # capture screen window
-$mod+XF86Cut exec  \
+$mod+XF86SelectiveScreenshot exec  \
 	'$HOME/.config/sway/scripts/screen_capture.sh region'
 
 }
