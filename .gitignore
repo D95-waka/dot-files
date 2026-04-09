@@ -26,5 +26,5 @@ fish/functions/_*
 ranger/plugins/**
 !wezterm/**
 !waybar/**
-nvim/lazy-lock.json
+nvim/nvim-pack-lock.json
 nvim/spell/*
