@@ -16,26 +16,23 @@ vim.pack.add {
 	}
 }
 
-local ls = require('luasnip')
-ls.setup {
+local luasnip = require('luasnip')
+require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/.config/nvim/snippets" } })
+require('luasnip-latex-snippets').setup({ use_treesitter = true })
+require("snippets")
+luasnip.setup {
 	enable_autosnippets = true
 }
-vim.keymap.set({ "i" }, "<C-K>", function() ls.expand() end, { silent = true })
+vim.keymap.set({ "i" }, "<C-K>", function() luasnip.expand() end, { silent = true })
 vim.keymap.set({ "i", "s" }, "<C-E>", function()
-	if ls.choice_active() then
-		ls.change_choice(1)
+	if luasnip.choice_active() then
+		luasnip.change_choice(1)
 	end
 end, { silent = true })
 
 require('cmp_nvim_lsp').setup()
-vim.schedule(function()
-	require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/.config/nvim/snippets" } })
-	require('luasnip-latex-snippets').setup({ use_treesitter = true })
-	require("snippets")
-end)
 
 local cmp = require('cmp')
-local luasnip = require('luasnip')
 cmp.setup {
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },

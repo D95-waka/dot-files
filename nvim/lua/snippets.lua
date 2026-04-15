@@ -84,6 +84,10 @@ ls.add_snippets("tex", {
 		"^{${1:-1}}$0"
 	),
 	ls.parser.parse_snippet(
+		{ trig = "__", name = "subscript", condition = in_math_no_backslash, wordTrig = false, priority = 9 },
+		"_{${1}}$0"
+	),
+	ls.parser.parse_snippet(
 		{ trig = "000", name = "empty set", condition = in_math, priority = 11 },
 		"\\emptyset$0"
 	),
