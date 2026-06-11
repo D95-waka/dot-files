@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-mode=$(echo -e 'window\noutput' | wmenu)
+mode=$(echo -e 'window\noutput' | fuzzel -d)
 case "$mode" in
 	"window")
 		swaymsg -t get_tree |
