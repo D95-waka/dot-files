@@ -1,5 +1,5 @@
 * {
-	font-family: monospace;
+	font-family: Iosevka NF;
 	color: @text;
 	font-size: 12px;
 	min-height: 0;
@@ -117,7 +117,7 @@ window#waybar {
 }
 
 #tray {
-	margin-right: 1rem;
+	margin-right: 0.5rem;
 	border-radius: 1rem;
 }
 

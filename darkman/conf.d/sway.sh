@@ -1,16 +1,6 @@
 #!/usr/bin/env sh
 
-function get_state {
-	gsettings get org.gnome.desktop.interface color-scheme | sed "s/prefer-//; s/'//g"
-}
-
 function set_dark {
-	notify-send -h string:x-dunst-stack-tag:darkmode -t 500 "dark mode"
-	gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-	gsettings set org.gnome.desktop.interface gtk-theme Catppuccin-Macchiato-Standard-Blue-Dark
-	sed -i 's|color_scheme_path=.*|color_scheme_path=/home/waka/.config/qt6ct/colors/Catppuccin-Macchiato.conf|' ~/.config/qt6ct/qt6ct.conf
-	makoctl mode -s dark
-
 	swaymsg -q set \$rosewater \#f4dbd6
 	swaymsg -q set \$flamingo \#f0c6c6
 	swaymsg -q set \$pink \#f5bde6
@@ -39,18 +29,9 @@ function set_dark {
 	swaymsg -q set \$crust \#181926
 
 	swaymsg -q seat seat0 xcursor_theme Catppuccin-Macchiato-Dark-Cursors 14
-	gsettings set org.gnome.desktop.interface cursor-theme Catppuccin-Macchiato-Dark-Cursors
-
-	echo 'general.import = [ "~/.config/alacritty/catppuccin-macchiato.toml" ]' > ~/.cache/alacritty_theme.toml
 }
 
 function set_light {
-	notify-send -h string:x-dunst-stack-tag:darkmode -t 500 "light mode"
-	gsettings set org.gnome.desktop.interface color-scheme prefer-light
-	gsettings set org.gnome.desktop.interface gtk-theme Catppuccin-Latte-Standard-Blue-Light
-	sed -i 's|color_scheme_path=.*|color_scheme_path=/home/waka/.config/qt6ct/colors/Catppuccin-Latte.conf|' ~/.config/qt6ct/qt6ct.conf
-	makoctl mode -s light
-
 	swaymsg -q set \$rosewater \#dc8a78
 	swaymsg -q set \$flamingo \#dd7878
 	swaymsg -q set \$pink \#ea76cb
@@ -79,9 +60,6 @@ function set_light {
 	swaymsg -q set \$crust \#dce0e8
 
 	swaymsg -q seat seat0 xcursor_theme Catppuccin-Frappe-Light-Cursors 14
-	gsettings set org.gnome.desktop.interface cursor-theme Catppuccin-Frappe-Light-Cursors
-
-	echo 'general.import = [ "~/.config/alacritty/catppuccin-latte.toml" ]' > ~/.cache/alacritty_theme.toml
 }
 
 function refresh_color {
@@ -93,22 +71,18 @@ function refresh_color {
 	swaymsg -q client.background        \$base
 }
 
-notify-send -h string:x-dunst-stack-tag:darkmode -t 5000 "$@"
-case "$1" in
-dark)
-	set_dark
-	;;
-light)
-	set_light
-	;;
-toggle)
-	[[ $(get_state) == "dark" ]] && set_light || set_dark
-	;;
-self)
-	[[ $(get_state) == "dark" ]] && set_dark || set_light
-	;;
-*)
-	echo INVALID COMMAND
-	;;
-esac
-refresh_color
+for i in "$XDG_RUNTIME_DIR"/sway-*.sock; do
+	export SWAYSOCK="$i"
+	case "$1" in
+	dark)
+		set_dark
+		;;
+	light)
+		set_light
+		;;
+	self)
+		[[ $(darkman get) == "dark" ]] && set_dark || set_light
+		;;
+	esac
+	refresh_color
+done

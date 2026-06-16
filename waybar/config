@@ -2,7 +2,7 @@
 	"ipc": true,
     "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
     "modules-center": ["sway/window"],
-    "modules-right": ["privacy", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "keyboard-state", "sway/language", "battery", "clock", "tray"],
+    "modules-right": ["privacy", "tray", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "keyboard-state", "sway/language", "battery", "clock"],
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
@@ -27,7 +27,14 @@
         "tooltip-format": "{app}: {title}"
     },
     "tray": {
-        "spacing": 10
+        "spacing": 10,
+		"show-passive-items": true,
+		"icons": {
+			"CopyQ": "/usr/share/icons/hicolor/128x128/apps/emacs.png",
+			"copyq": "/usr/share/icons/hicolor/128x128/apps/emacs.png",
+			"com.github.hluk.copyq": "/usr/share/icons/hicolor/128x128/apps/emacs.png",
+			"com.obsproject.Studio": "kitty"
+		}
     },
     "clock": {
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",

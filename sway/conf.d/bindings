@@ -180,7 +180,7 @@ XF86MonBrightnessDown exec \
 
 # toggle system dark-mode via dedicated script
 Shift+XF86MonBrightnessUp exec \
-	'~/.config/scripts/darkmode.sh toggle'
+	'darkman toggle'
 
 # didn't think what to set this to yet
 XF86Favorites exec  \

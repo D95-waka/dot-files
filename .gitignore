@@ -27,5 +27,6 @@ ranger/plugins/**
 !wezterm/**
 !kitty/**
 !waybar/**
+!darkman/**
 nvim/nvim-pack-lock.json
 nvim/spell/*
