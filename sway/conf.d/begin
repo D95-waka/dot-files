@@ -54,7 +54,7 @@ bindswitch --reload --locked lid:on output $disp1 disable
 bindswitch --reload --locked lid:off output $disp1 enable
 
 # startup apps
-exec_always 'killall copyq; copyq &'
+exec copyq
 exec_always '~/.config/scripts/info_daemon/info_daemon.sh'
 
 exec ' \
