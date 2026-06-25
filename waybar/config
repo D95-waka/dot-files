@@ -30,10 +30,7 @@
         "spacing": 10,
 		"show-passive-items": true,
 		"icons": {
-			"CopyQ": "/usr/share/icons/hicolor/128x128/apps/emacs.png",
-			"copyq": "/usr/share/icons/hicolor/128x128/apps/emacs.png",
-			"com.github.hluk.copyq": "/usr/share/icons/hicolor/128x128/apps/emacs.png",
-			"com.obsproject.Studio": "kitty"
+			"CopyQ_copyq": ".config/waybar/copyq.svg"
 		}
     },
     "clock": {
