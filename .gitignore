@@ -30,3 +30,4 @@ ranger/plugins/**
 !darkman/**
 nvim/nvim-pack-lock.json
 nvim/spell/*
+emacs
