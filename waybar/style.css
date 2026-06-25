@@ -5,22 +5,24 @@
 	min-height: 0;
 }
 
-window#waybar {
-	background-color: shade(@base, 0.9);
-	border: 2px solid alpha(@crust, 0.3);
+window {
+	background-color: transparent;
 }
 
-#waybar {
-	background: transparent;
+window#waybar {
 	color: @text;
-	margin: 5px 5px;
+	background: transparent;
+}
+
+window#waybar > box {
+	background: @base;
+	border-radius: 2rem;
 }
 
 #workspaces {
 	border-radius: 1rem;
 	margin: 5px;
 	background-color: @surface0;
-	margin-left: 1rem;
 }
 
 #workspaces button {
@@ -71,7 +73,7 @@ window#waybar {
 #clock {
 	color: @blue;
 	border-radius: 0px 1rem 1rem 0px;
-	margin-right: 1rem;
+	margin-right: 5px;
 }
 
 #battery {
