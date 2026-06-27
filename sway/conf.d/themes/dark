@@ -1,4 +1,4 @@
-output * bg '~/.config/wallpapers/artemis_ii_in_eclipse.jpg' fill
+output * bg '~/.config/wallpapers/tails-catppuccin-machiato.png' fill
 seat seat0 xcursor_theme Catppuccin-Macchiato-Dark-Cursors 14
 
 set $rosewater #f4dbd6
