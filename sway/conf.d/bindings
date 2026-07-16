@@ -163,6 +163,15 @@ XF86AudioMicMute exec \
 	"󰍬	$(wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | \
 		awk '{ if ($3 == "[MUTED]") print \"mute\"; else print $2 * 100 \"%\"; }')"
 
+# control media via playerctl
+XF86AudioPlay exec playerctl play-pause
+XF86AudioPause exec playerctl play-pause
+XF86Select exec playerctl play-pause
+Pause exec playerctl play-pause
+XF86AudioPrev exec playerctl previous
+XF86AudioNext exec playerctl next
+XF86AudioStop exec playerctl stop
+
 # cycle between languages, note that the language change itself is configured through the output configuration
 $mod+space exec \
 	notify-send -h string:x-dunst-stack-tag:binds -t 500 \
@@ -192,13 +201,22 @@ XF86Calculator exec  \
 
 # remote control options
 XF86HomePage exec \
-	sh -c 'imv -f $HOME/.local/share/prompts/prompt3.png & sleep 10; kill %1'
+	sh -c 'imv -f $HOME/.pres/c & sleep 6; kill %1'
 
 XF86Yellow exec \
-	sh -c 'imv -f $HOME/.local/share/prompts/prompt1.png & sleep 10; kill %1'
+	sh -c 'imv -f $HOME/.pres/e & sleep 6; kill %1'
 
 XF86Video exec \
-	sh -c 'imv -f $HOME/.local/share/prompts/prompt2.png & sleep 10; kill %1'
+	sh -c 'imv -f $HOME/.pres/d & sleep 6; kill %1'
+
+XF86AppSelect exec \
+	sh -c 'mpv $HOME/.pres/a'
+
+XF86Back exec \
+	sh -c 'mpv $HOME/.pres/b'
+
+XF86VoiceCommand exec \
+	sh -c 'mpv $HOME/.pres/z'
 
 # capture whole screen
 Print exec \

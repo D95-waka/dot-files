@@ -1,6 +1,6 @@
 {
 	"ipc": true,
-    "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
+    "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad", "mpris"],
     "modules-center": ["sway/window"],
     "modules-right": ["privacy", "tray", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "keyboard-state", "sway/language", "battery", "clock"],
     "keyboard-state": {
@@ -122,6 +122,17 @@
 				"name": "obs"
 			}
 		]
+	},
+	"mpris": {
+		"format": "{player_icon} {dynamic}",
+		"format-paused": "{status_icon} <i>{dynamic}</i>",
+		"player-icons": {
+			"default": "▶",
+			"mpv": " "
+		},
+		"status-icons": {
+			"paused": "⏸"
+		}
 	}
 }
 
