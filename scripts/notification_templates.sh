@@ -3,7 +3,7 @@
 function battery {
 	case "$1" in
 		"charging")
-			notify-send -h string:x-dunst-stack-tag:battery -t 5000 "󰂄	"
+			notify-send -h string:x-dunst-stack-tag:battery -t 5000 "󰂄	󱐋"
 			;;
 		"discharging")
 			notify-send -h string:x-dunst-stack-tag:battery -t 5000 "󰂄	"

@@ -73,12 +73,9 @@ vim.lsp.config('texlab', {
 	}
 })
 
-vim.lsp.enable('hls')
-vim.lsp.config('hls', {
-	filetypes = { 'haskell', 'lhaskell', 'cabal' },
+vim.lsp.enable('tinymist')
+vim.lsp.config('tinymist', {
 	settings = {
-		haskell = {
-			formattingProvider = 'fourmolu'
-		}
+		outputPath = "$dir/bin/$name"
 	}
 })

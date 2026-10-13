@@ -21,6 +21,9 @@ mode "resize" bindsym {
 
 bindsym --to-code {
 
+$mod+Return exec \
+	$TERMINAL
+
 $mod+grave exec \
 	$TERMINAL
 
